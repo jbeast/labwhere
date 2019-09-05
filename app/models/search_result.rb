@@ -3,6 +3,7 @@
 # An object which will be returned by the search or the api.
 class SearchResult
 
+  extend ActiveModel::Naming
   include Enumerable
   include ActiveModel::Serialization
   include ActionView::Helpers::TextHelper

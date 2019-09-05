@@ -1,5 +1,4 @@
-require File.expand_path('../boot', __FILE__)
-
+require_relative 'boot'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -30,6 +29,8 @@ module Labwhere
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     config.autoload_paths += %W(#{config.root}/lib/utils #{config.root}/lib/validators)
 
     config.autoload_paths += %W(#{config.root}/app/models/users #{config.root}/app/models/locations #{config.root}/app/models/restrictions)
@@ -40,7 +41,7 @@ module Labwhere
 
     config.label_templates = Rails.application.config_for(:label_templates)
 
-    # replace fixtures with factory girl
+    # replace fixtures with factory bot
     config.generators do |g|
         g.test_framework :rspec,
             fixtures: true,
@@ -49,7 +50,7 @@ module Labwhere
             routing_specs: false,
             controller_specs: false,
             request_specs: true
-        g.fixture_replacement :factory_girl, dir: "spec/factories"
+        g.fixture_replacement :factory_bot, dir: "spec/factories"
 
     end
   end
