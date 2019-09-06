@@ -9,7 +9,7 @@ RSpec.describe Api::SearchesController, type: :request do
 
   it "should return the correct results" do
     post api_searches_path, params: { search: { term: "A stupid"} }
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(ActiveSupport::JSON.decode(response.body)["count"]).to eq(2)
   end
 

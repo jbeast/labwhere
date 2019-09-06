@@ -9,14 +9,14 @@ RSpec.describe Api::LocationTypesController, type: :request do
   it "should retrieve information about location types get /api/location_types" do
     location_types = create_list(:location_type, 5)
     get api_location_types_path
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(ActiveSupport::JSON.decode(response.body).length).to eq(location_types.length)
   end
 
   it "should retrieve information about a location type get /api/location_types/<id>" do
     location_type = create(:location_type)
     get api_location_type_path(location_type)
-    expect(response).to be_success
+    expect(response).to be_successful
     json = ActiveSupport::JSON.decode(response.body)
     expect(json["id"]).to eq(location_type.id)
     expect(json["name"]).to eq(location_type.name)
@@ -29,21 +29,21 @@ RSpec.describe Api::LocationTypesController, type: :request do
   it "should retrieve information about a location types location get /api/location_types/<id>/locations" do
     location_type = create(:location_type_with_locations)
     get api_location_type_locations_path(location_type)
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(ActiveSupport::JSON.decode(response.body).length).to eq(location_type.locations.length)
   end
 
   it "should retrieve information about a location types audits get /api/location_types/<id>/audits" do
     location_type = create(:location_type_with_audits)
     get api_location_type_audits_path(location_type)
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(ActiveSupport::JSON.decode(response.body).length).to eq(location_type.audits.length)
   end
 
   it "should create a new location type" do
     post api_location_types_path, params: { location_type: attributes_for(:location_type).merge(user_code: user.swipe_card_id) }
     location_type = LocationType.first
-    expect(response).to be_success
+    expect(response).to be_successful
     json = ActiveSupport::JSON.decode(response.body)
     expect(json["created_at"]).to eq(location_type.created_at.to_s(:uk))
     expect(json["updated_at"]).to eq(location_type.updated_at.to_s(:uk))
@@ -67,7 +67,7 @@ RSpec.describe Api::LocationTypesController, type: :request do
     location_type = create(:location_type)
     location_type_new = build(:location_type)
     patch api_location_type_path(location_type), params: { location_type: { user_code: user.swipe_card_id, name: location_type_new.name } }
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(location_type.reload.name).to eq(location_type_new.name)
   end
 

@@ -31,7 +31,7 @@ class Location < ActiveRecord::Base
 
   validates_with ContainerReservationValidator
 
-  scope :without, ->(location) { active.where.not(id: location.id).order(id: :desc) }
+  scope :without_location, ->(location) { active.where.not(id: location.id).order(id: :desc) }
   scope :without_unknown, -> { where.not(name: UNKNOWN) }
   scope :by_root, -> { without_unknown.where(parent_id: nil) }
 

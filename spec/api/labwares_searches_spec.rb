@@ -10,7 +10,7 @@ RSpec.describe Api::Labwares::SearchesController, type: :request do
   end
 
   it "should be a success" do
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it "should return the labwares" do
