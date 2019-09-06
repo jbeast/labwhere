@@ -10,9 +10,9 @@ class Location < ActiveRecord::Base
   include SubclassChecker
   include Reservable
 
-  belongs_to :location_type
+  belongs_to :location_type, optional: true
   belongs_to :parent, class_name: "Location"
-  belongs_to :team
+  belongs_to :team, optional: true
   has_many :labwares
 
   validates :name, presence: true, uniqueness: {scope: :parent, case_sensitive: true}

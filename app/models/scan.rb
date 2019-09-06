@@ -12,8 +12,8 @@ class Scan < ActiveRecord::Base
 
   enum status: [:in, :out]
 
-  belongs_to :location
-  belongs_to :user
+  belongs_to :location, optional: true
+  belongs_to :user, optional: true
 
   before_save :set_status, :create_message
 

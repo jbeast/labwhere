@@ -15,7 +15,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => 'public, max-age=3600'
+    'Cache-Control' => "public, max-age=#{1.hour.seconds.to_i}"
   }
 
   # Show full error reports and disable caching.
@@ -41,11 +41,11 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.middleware.use ExceptionNotification::Rack,
-    email: {
-      email_prefix: "[PREFIX] ",
-      sender_address: %("Projects Exception Notifier" <#{Rails.configuration.mailer['smtp']['sender']}>),
-      exception_recipients: %w(#{Rails.configuration.mailer['smtp']['recipient']})
-    }
+                        email: {
+                            email_prefix: "[PREFIX] ",
+                            sender_address: %("Projects Exception Notifier" <#{Rails.configuration.mailer['smtp']['sender']}>),
+                            exception_recipients: %w(#{Rails.configuration.mailer['smtp']['recipient']})
+                        }
 
   # Print My Barcode api base
   config.x.pmb_api_base = 'http://pmb.test/api/v1'

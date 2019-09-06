@@ -42,3 +42,5 @@ bower.json
 
 #ignore cgap data
 /lib/cgap/data
+
+.byebug_history
