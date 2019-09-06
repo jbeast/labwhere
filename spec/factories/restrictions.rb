@@ -12,7 +12,7 @@ FactoryBot.define do
     factory :parentage_restriction, class: "ParentageRestriction" do
 
       after(:create) do |parentage_restriction, evaluator|
-        1.upto(2) { parentage_restriction.location_types << FactoryBot.create(:location_type) }
+        create_list(:location_types_restriction, 2, parentage_restriction: parentage_restriction)
       end
 
     end

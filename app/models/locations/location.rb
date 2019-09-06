@@ -10,7 +10,7 @@ class Location < ActiveRecord::Base
   include SubclassChecker
   include Reservable
 
-  belongs_to :location_type, optional: true
+  belongs_to :location_type, optional: true # Optional for UnknownLocation
   belongs_to :parent, class_name: "Location"
   belongs_to :team, optional: true
   has_many :labwares
