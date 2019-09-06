@@ -44,3 +44,4 @@ bower.json
 /lib/cgap/data
 
 .byebug_history
+.idea
