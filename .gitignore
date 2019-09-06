@@ -45,3 +45,5 @@ bower.json
 
 .byebug_history
 .idea
+.generators
+.rakeTasks
